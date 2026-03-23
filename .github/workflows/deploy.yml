@@ -19,7 +19,10 @@ jobs:
         run: cd next-app && npm install
 
       - name: Build
-        run: cd next-app && npm run build
+        run: |
+          df -h
+          free -h
+          cd next-app && npm run build 2>&1
         env:
           REMOVE_BG_API_KEY: ${{ secrets.REMOVE_BG_API_KEY }}
 
