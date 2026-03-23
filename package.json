@@ -1,0 +1,13 @@
+{
+  "name": "image-background-remover",
+  "version": "1.0.0",
+  "description": "One-click image background remover powered by Cloudflare Worker + Remove.bg API",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "keywords": ["background-remover", "cloudflare-worker", "remove-bg"],
+  "author": "weilily219110",
+  "license": "MIT"
+}

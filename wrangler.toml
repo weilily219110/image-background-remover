@@ -1,0 +1,9 @@
+name = "image-background-remover"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "*"
+
+# secrets: wrangler secret put REMOVE_BG_API_KEY
+# 建议：正式环境使用 Cloudflare Secrets 存储 API Key

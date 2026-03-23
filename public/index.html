@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BG Remover — One-Click Image Background Removal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>🎯 BG Remover</h1>
+      <p class="subtitle">Remove image backgrounds in one click — free, fast, no storage.</p>
+    </header>
+
+    <!-- Upload Area -->
+    <main>
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-zone-content">
+          <div class="upload-icon">📤</div>
+          <p class="drop-text">Drag & drop your image here</p>
+          <p class="drop-subtext">or click to browse</p>
+          <p class="drop-hint">Supports JPG, PNG, WebP · Max 10MB</p>
+        </div>
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" hidden />
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Removing background...</p>
+      </div>
+
+      <!-- Result Area -->
+      <div id="result" class="result hidden">
+        <div class="preview-grid">
+          <div class="preview-card">
+            <h3>Original</h3>
+            <div class="preview-img-wrapper">
+              <img id="original-preview" src="" alt="Original" />
+            </div>
+          </div>
+          <div class="preview-card">
+            <h3>Result</h3>
+            <div class="preview-img-wrapper checkerboard">
+              <img id="result-preview" src="" alt="Result" />
+            </div>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <a id="download-btn" class="btn btn-primary" download="result.png">
+            ⬇️ Download PNG
+          </a>
+          <button id="reset-btn" class="btn btn-secondary">
+            🔄 Try Another
+          </button>
+        </div>
+      </div>
+
+      <!-- Error Area -->
+      <div id="error" class="error hidden">
+        <p id="error-message"></p>
+        <button id="error-reset" class="btn btn-secondary">Try Again</button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>Powered by <a href="https://www.remove.bg" target="_blank">Remove.bg</a> + Cloudflare Workers</p>
+    </footer>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
