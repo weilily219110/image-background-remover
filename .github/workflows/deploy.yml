@@ -16,7 +16,7 @@ jobs:
           node-version: 20
 
       - name: Install
-        run: cd next-app && npm ci
+        run: cd next-app && npm install
 
       - name: Build
         run: cd next-app && npm run build
