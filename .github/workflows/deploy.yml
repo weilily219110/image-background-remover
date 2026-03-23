@@ -9,29 +9,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 20
 
-      - name: Install dependencies
-        run: cd next-app && npm install
+      - name: Install
+        run: cd next-app && npm ci
 
       - name: Build
-        run: |
-          cd next-app
-          rm -rf .next
-          npm run build 2>&1
+        run: cd next-app && npm run build
+        env:
+          REMOVE_BG_API_KEY: ${{ secrets.REMOVE_BG_API_KEY }}
 
       - name: Deploy
         run: |
           npm install -g wrangler
-          wrangler pages deploy next-app/.next \
-            --project-name=bg-remover \
-            --branch=production
+          wrangler pages deploy next-app/.next --project-name=bg-remover
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
