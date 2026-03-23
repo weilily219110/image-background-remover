@@ -18,12 +18,19 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: cd next-app && npm install
+        run: |
+          echo "=== Install output ==="
+          cd next-app && npm install 2>&1
+          echo "=== Install exit code: $? ==="
 
       - name: Build
-        run: cd next-app && npm run build
+        run: |
+          echo "=== Build output ==="
+          cd next-app && npm run build 2>&1
+          echo "=== Build exit code: $? ==="
 
       - name: Deploy to Cloudflare Pages
+        if: success()
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
