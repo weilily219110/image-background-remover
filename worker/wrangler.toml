@@ -1,0 +1,8 @@
+name = "bg-remover-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "*"
+
+# Required: set via `npx wrangler secret put REMOVE_BG_API_KEY`

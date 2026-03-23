@@ -195,7 +195,7 @@ export default function Home() {
       const formData = new FormData();
       formData.append("image", file);
 
-      const res = await fetch("/api/remove-bg", { method: "POST", body: formData });
+      const res = await fetch("https://bg-remover-api.weilily219110.workers.dev/", { method: "POST", body: formData });
 
       if (!res.ok) {
         let errMsg = "Something went wrong. Please try again.";

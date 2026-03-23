@@ -6,3 +6,4 @@ dist/
 .webpack/
 .DS_Store
 *.log
+tsconfig.tsbuildinfo
