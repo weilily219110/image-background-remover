@@ -24,8 +24,6 @@ jobs:
 
       - name: Build
         run: cd next-app && npm run build
-        env:
-          REMOVE_BG_API_KEY: ${{ secrets.REMOVE_BG_API_KEY }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
