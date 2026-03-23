@@ -18,21 +18,17 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: |
-          echo "=== Install output ==="
-          cd next-app && npm install 2>&1
-          echo "=== Install exit code: $? ==="
+        run: cd next-app && npm install
 
       - name: Build
-        run: |
-          echo "=== Build output ==="
-          cd next-app && npm run build 2>&1
-          echo "=== Build exit code: $? ==="
+        run: cd next-app && npm run build
 
-      - name: Deploy to Cloudflare Pages
-        if: success()
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy next-app/.next --project-name=bg-remover
+      - name: Deploy
+        run: |
+          npm install -g wrangler
+          wrangler pages deploy next-app/.next \
+            --project-name=bg-remover \
+            --branch=production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
