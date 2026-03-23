@@ -17,15 +17,18 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install Yarn
+        run: npm install -g yarn
+
       - name: Install dependencies
         run: |
           cd next-app
-          npm ci --ignore-scripts 2>&1 || npm install --ignore-scripts --prefer-offline 2>&1
+          yarn install 2>&1
 
       - name: Build
         run: |
           cd next-app
-          npm run build 2>&1
+          yarn build 2>&1
 
       - name: Deploy
         run: |
